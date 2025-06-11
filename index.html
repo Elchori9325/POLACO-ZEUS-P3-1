@@ -40,23 +40,32 @@
       text-align: center;
     }
 
-    /* Logo centrado sobre las imágenes y un poco más grande */
+    /* Logo centrado sobre las imágenes y más grande */
     .logo {
       position: absolute;
-      top: 15%;
+      top: 10%; /* Logo más arriba */
       z-index: 2;
     }
 
     .logo img {
-      max-width: 250px; /* Aumentamos el tamaño del logo */
+      max-width: 300px; /* Aumentamos el tamaño del logo */
       margin-bottom: 35px;
       filter: drop-shadow(0 0 10px #fff);
     }
 
+    /* Estilo del texto */
     .question-title {
-      font-size: 1.8rem; /* Reducimos el tamaño del texto */
+      font-size: 2rem; /* Un poco más grande que antes */
       margin: 30px 0;
-      text-shadow: 1px 1px 3px #000;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7); /* Sombra oscura */
+      color: rgba(0, 0, 0, 0.8); /* Color oscuro */
+      position: absolute;
+      top: 25%;
+      z-index: 2;
+      width: 90%;
+      left: 50%;
+      transform: translateX(-50%);
+      text-align: center;
     }
 
     .buttons-block {
@@ -73,7 +82,7 @@
       background: linear-gradient(45deg, #1E90FF, #4682B4); /* Azul brillante */
       color: #fff;
       font-weight: 600;
-      font-size: 1.2rem;
+      font-size: 1.3rem; /* Aumentamos el tamaño del texto de los botones */
       border: none;
       border-radius: 14px;
       cursor: pointer;
@@ -125,11 +134,11 @@
 
     @media (max-width: 480px) {
       .question-title {
-        font-size: 1.4rem; /* Reducimos el tamaño del texto en móviles */
+        font-size: 1.6rem; /* Reducimos un poco más en móviles */
       }
 
       .step-btn {
-        font-size: 1.05rem;
+        font-size: 1.15rem;
         padding: 18px 24px;
       }
 
