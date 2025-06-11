@@ -12,22 +12,25 @@
   <meta property="og:image" content="https://i.postimg.cc/c4pXCYNv/497731201-122102246612871161-7162665191645491046-n.jpg">
   <link rel="shortcut icon" href="https://cdn.jmpcdn.com/assets/3420/images/2.ico" type="image/x-icon">
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+  <!-- 🔒 Cloaking: Bloquear PC -->
+  <script>
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (!isMobile) {
+      document.write('<h1 style="color:white;text-align:center;margin-top:20%;">Esta página solo está disponible en dispositivos móviles.</h1>');
+      throw new Error("Acceso bloqueado para escritorio.");
     }
+  </script>
 
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
       height: 100%;
       font-family: 'Poppins', sans-serif;
       color: #fff;
-      background-color: #000; /* Fondo negro */
+      background-color: #000;
       overflow-x: hidden;
       position: relative;
     }
-
     .wrap {
       position: relative;
       z-index: 1;
@@ -39,38 +42,32 @@
       padding: 20px;
       text-align: center;
     }
-
-    /* Logo centrado sobre las imágenes y un poco más grande */
     .logo {
       position: absolute;
       top: 15%;
       z-index: 2;
     }
-
     .logo img {
-      max-width: 250px; /* Aumentamos el tamaño del logo */
+      max-width: 250px;
       margin-bottom: 35px;
       filter: drop-shadow(0 0 10px #fff);
     }
-
     .question-title {
-      font-size: 1.8rem; /* Reducimos el tamaño del texto */
+      font-size: 1.8rem;
       margin: 30px 0;
       text-shadow: 1px 1px 3px #000;
     }
-
     .buttons-block {
       display: flex;
       flex-direction: column;
       gap: 20px;
       width: 100%;
       max-width: 380px;
-      z-index: 2; /* Asegura que los botones estén sobre las imágenes */
+      z-index: 2;
     }
-
     .step-btn {
       padding: 20px 28px;
-      background: linear-gradient(45deg, #1E90FF, #4682B4); /* Azul brillante */
+      background: linear-gradient(45deg, #1E90FF, #4682B4);
       color: #fff;
       font-weight: 600;
       font-size: 1.2rem;
@@ -83,30 +80,24 @@
       align-items: center;
       justify-content: center;
     }
-
     .step-btn:hover {
       transform: scale(1.07);
       box-shadow: 0 8px 24px rgba(30, 144, 255, 0.7);
     }
-
     .step-btn span {
       margin-left: 10px;
     }
-
     a.step-btn {
       text-decoration: none;
       display: block;
     }
-
-    /* Estilos para las imágenes */
     .image-container {
       position: relative;
       width: 100%;
-      height: 50vh; /* Reducimos la altura de las imágenes */
+      height: 50vh;
       max-width: 100%;
       overflow: hidden;
     }
-
     .image-container img {
       position: absolute;
       top: 0;
@@ -117,25 +108,13 @@
       opacity: 0;
       transition: opacity 1s ease-in-out;
     }
-
-    /* Agregar efecto fade-in */
     .image-container img.active {
       opacity: 1;
     }
-
     @media (max-width: 480px) {
-      .question-title {
-        font-size: 1.4rem; /* Reducimos el tamaño del texto en móviles */
-      }
-
-      .step-btn {
-        font-size: 1.05rem;
-        padding: 18px 24px;
-      }
-
-      .buttons-block {
-        max-width: 100%;
-      }
+      .question-title { font-size: 1.4rem; }
+      .step-btn { font-size: 1.05rem; padding: 18px 24px; }
+      .buttons-block { max-width: 100%; }
     }
   </style>
 </head>
@@ -146,7 +125,6 @@
       <img src="https://i.imgur.com/sZdtUEq.png" alt="Logo strony">
     </div>
 
-    <!-- Contenedor para las imágenes -->
     <div class="image-container">
       <img src="https://i.postimg.cc/CdTWjD1r/81020308-007-1929.jpg" class="active">
       <img src="https://i.postimg.cc/5tK987MP/81020308-016-d7a5.jpg">
@@ -161,12 +139,8 @@
           Przyjeżdżamy do Ciebie w nocy, usługa dostępna w całym mieście. Chcesz zobaczyć mój katalog?
         </div>
         <div class="buttons-block">
-          <button class="step-btn" onclick="afficherEtape2()">
-            😈 Tak, chcę zobaczyć
-          </button>
-          <button class="step-btn" onclick="alert('Może innym razem!')">
-            😞 Nie teraz
-          </button>
+          <button class="step-btn" onclick="afficherEtape2()">😈 Tak, chcę zobaczyć</button>
+          <button class="step-btn" onclick="alert('Może innym razem!')">😞 Nie teraz</button>
         </div>
       </div>
 
@@ -189,7 +163,6 @@
       document.getElementById("step2").style.display = "block";
     }
 
-    // Cambio de imágenes con fade
     let currentIndex = 0;
     const images = document.querySelectorAll('.image-container img');
     const totalImages = images.length;
@@ -200,7 +173,21 @@
       images[currentIndex].classList.add('active');
     }
 
-    setInterval(changeImage, 2000); // Cambia cada 2 segundos
+    setInterval(changeImage, 2000);
+  </script>
+
+  <!-- 🔐 Bloqueo de inspección -->
+  <script>
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', function (e) {
+      if (
+        e.key === "F12" ||
+        (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key)) ||
+        (e.ctrlKey && e.key === 'u')
+      ) {
+        e.preventDefault();
+      }
+    });
   </script>
 
 </body>
