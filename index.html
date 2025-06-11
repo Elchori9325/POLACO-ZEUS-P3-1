@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <!-- CLOAKING: Redirect a Google se non è un dispositivo mobile -->
-  <script>
-    if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-      window.location.href = "https://www.google.com";
-    }
-  </script>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
@@ -18,10 +11,6 @@
 
   <meta property="og:image" content="https://i.postimg.cc/c4pXCYNv/497731201-122102246612871161-7162665191645491046-n.jpg">
   <link rel="shortcut icon" href="https://cdn.jmpcdn.com/assets/3420/images/2.ico" type="image/x-icon">
-
-  <!-- Compteur de suivi (stronger114) -->
-  <script id="_wau1ca">var _wau = _wau || []; _wau.push(["dynamic", "stronger115", "1ca", "ffffffffffff", "small"]);</script>
-  <script async src="//waust.at/d.js"></script>
 
   <style>
     * {
@@ -34,18 +23,9 @@
       height: 100%;
       font-family: 'Poppins', sans-serif;
       color: #fff;
-      background-color: transparent;
+      background-color: #000; /* Fondo negro */
       overflow-x: hidden;
-    }
-
-    #VideoBg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
+      position: relative;
     }
 
     .wrap {
@@ -57,7 +37,6 @@
       align-items: center;
       justify-content: center;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.6);
       text-align: center;
     }
 
@@ -111,6 +90,31 @@
       display: block;
     }
 
+    /* Estilos para las imágenes */
+    .image-container {
+      position: relative;
+      width: 100%;
+      height: 60vh; /* Asegura que el contenedor tenga un tamaño adecuado */
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .image-container img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    /* Agregar efecto fade-in */
+    .image-container img.active {
+      opacity: 1;
+    }
+
     @media (max-width: 480px) {
       .question-title {
         font-size: 1.5rem;
@@ -129,13 +133,18 @@
 </head>
 <body>
 
-  <video autoplay muted loop id="VideoBg" playsinline>
-    <source src="https://cdn-dimi.akamaized.net/landings/275415/1665133459/images/4.mp4" type="video/mp4">
-  </video>
-
   <div class="wrap">
     <div class="logo">
       <img src="https://i.imgur.com/sZdtUEq.png" alt="Logo strony">
+    </div>
+
+    <!-- Contenedor para las imágenes -->
+    <div class="image-container">
+      <img src="https://i.postimg.cc/CdTWjD1r/81020308-007-1929.jpg" class="active">
+      <img src="https://i.postimg.cc/5tK987MP/81020308-016-d7a5.jpg">
+      <img src="https://i.postimg.cc/RFjMDWhK/81020308-011-362d.jpg">
+      <img src="https://i.postimg.cc/DfXfbPpg/81020308-013-0ac4.jpg">
+      <img src="https://i.postimg.cc/1509v5QV/81020308-012-0ac4.jpg">
     </div>
 
     <div class="step-block">
@@ -171,6 +180,19 @@
       document.getElementById("step1").style.display = "none";
       document.getElementById("step2").style.display = "block";
     }
+
+    // Cambio de imágenes con fade
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.image-container img');
+    const totalImages = images.length;
+
+    function changeImage() {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % totalImages;
+      images[currentIndex].classList.add('active');
+    }
+
+    setInterval(changeImage, 2000); // Cambia cada 2 segundos
   </script>
 
 </body>
